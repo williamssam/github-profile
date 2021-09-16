@@ -6,6 +6,10 @@ const ProfileHeader = styled.header`
 	display: flex;
 	gap: 4rem;
 
+	a:hover {
+		text-decoration: underline;
+	}
+
 	@media screen and (max-width: 648px) {
 		flex-direction: column;
 		text-align: center;

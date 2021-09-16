@@ -1,4 +1,5 @@
 import { FooterContainer } from './styles/FooterStyles'
+import { GoMarkGithub } from 'react-icons/go'
 
 const Footer = () => {
 	return (
