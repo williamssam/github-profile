@@ -1,10 +1,14 @@
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import './App.css'
-import ProfileDetails from './components/ProfileDetails'
-import SearchSection from './components/SearchSection'
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import NotFound from './components/NotFound'
+import ProfileDetails from './pages/ProfileDetails'
+import SearchSection from './pages/SearchSection'
 
-function App() {
+type Error = {
+	error: string
+}
+
+function App({ error }: Error) {
 	return (
 		<Router>
 			<Switch>
@@ -15,7 +19,7 @@ function App() {
 					<ProfileDetails />
 				</Route>
 				<Route path='*'>
-					<NotFound />
+					<NotFound error={error} />
 				</Route>
 			</Switch>
 		</Router>

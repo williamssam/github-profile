@@ -1,7 +1,14 @@
 import styled from 'styled-components'
-import TopLanguagesChart from './Charts/TopLanguagesChart'
-import MostStarredChart from './Charts/MostStarredChart'
+import { UserRepos } from '../types'
 import LanguageStars from './Charts/LanguageStars'
+import MostStarredChart from './Charts/MostStarredChart'
+import TopLanguagesChart from './Charts/TopLanguagesChart'
+
+interface ChartsProps {
+	topLanguage: UserRepos | null
+	mostStarred: UserRepos | null
+	languageStars: UserRepos | null
+}
 
 const ChartsContainer = styled.section`
 	display: grid;
@@ -16,7 +23,7 @@ const ChartsContainer = styled.section`
 	}
 `
 
-const Charts = ({ topLanguage, mostStarred, languageStars }) => {
+const Charts = ({ topLanguage, mostStarred, languageStars }: ChartsProps) => {
 	return (
 		<ChartsContainer>
 			{topLanguage && <TopLanguagesChart stat={topLanguage} />}

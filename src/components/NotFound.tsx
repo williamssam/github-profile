@@ -12,7 +12,11 @@ const NotFoundContainer = styled.div`
 	background: ${({ theme }) => theme.colors.colorOne};
 `
 
-const NotFound = ({ error }) => {
+interface ErrorProps {
+	error: string
+}
+
+const NotFound = ({ error }: ErrorProps) => {
 	return (
 		<NotFoundContainer>
 			{error ? (

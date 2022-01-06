@@ -3,7 +3,7 @@ import styled from 'styled-components'
 export const Chart = styled.div`
 	background: #fff;
 	border-radius: 10px;
-	padding: 2rem 3rem;
+	padding: 3rem;
 	display: flex;
 	flex-direction: column;
 	box-shadow: 0 0.3px 1.9px rgba(0, 0, 0, 0.01),

@@ -1,25 +1,39 @@
-import {
-	UserGithubStatH2,
-	UserGithubStatP,
-	UserGithubStatsDetails,
-	UserGithubStats,
-	UserGithubList,
-	UserGithubDetails,
-	UserDescription,
-	UserUsername,
-	ProfileArticle,
-	UserImage,
-	ProfileHeader,
-} from './styles/HeaderStyles'
-
+import { FaTwitter } from 'react-icons/fa'
 import {
 	GoBriefcase,
 	GoCalendar,
 	GoLocation,
 	GoMarkGithub,
 } from 'react-icons/go'
-import { FaTwitter } from 'react-icons/fa'
-import getDateName from '../misc/getDateName'
+import {
+	ProfileArticle,
+	ProfileHeader,
+	UserDescription,
+	UserGithubDetails,
+	UserGithubList,
+	UserGithubStatH2,
+	UserGithubStatP,
+	UserGithubStats,
+	UserGithubStatsDetails,
+	UserImage,
+	UserUsername,
+} from '../styles/HeaderStyles'
+import { getDateName } from '../utilities/getDateName'
+
+interface HeaderProps {
+	name: string
+	followers: number
+	following: number
+	public_repos: number
+	avatar_url: string
+	bio: string
+	location: string
+	created_at: string
+	login: string
+	html_url: string
+	twitter_username: string
+	company: string
+}
 
 const Header = ({
 	name,
@@ -34,7 +48,7 @@ const Header = ({
 	html_url,
 	twitter_username,
 	company,
-}) => {
+}: HeaderProps) => {
 	return (
 		<>
 			<ProfileHeader>
@@ -86,13 +100,7 @@ const Header = ({
 						{created_at && (
 							<UserGithubList>
 								<GoCalendar />
-								<p>
-									Joined{' '}
-									{getDateName(
-										created_at.substr(0, 10),
-										'default'
-									)}
-								</p>
+								<p>Joined {getDateName(created_at.slice(0, 20))}</p>
 							</UserGithubList>
 						)}
 					</UserGithubDetails>

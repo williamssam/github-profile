@@ -30,10 +30,10 @@ const UserImage = styled.img`
 
 const ProfileArticle = styled.article`
 	align-self: center;
-	padding: 2rem 0;
+	padding: 3rem 0;
 
 	@media screen and (max-width: 1300px) {
-		padding: 1.5rem 0;
+		padding: 2rem 0;
 	}
 
 	@media screen and (max-width: 1300px) {

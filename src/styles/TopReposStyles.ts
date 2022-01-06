@@ -25,17 +25,18 @@ const TopReposContainer = styled.section`
 
 	ul {
 		display: grid;
-		grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-		gap: 2.5rem 1.5rem;
+		grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+		gap: 2.5rem;
 		margin-top: 3rem;
 	}
 
 	li {
 		min-height: 100%;
+		background: #fff;
 	}
 
 	a {
-		padding: 3rem;
+		padding: 4.25rem 3rem;
 		border-radius: 5px;
 		box-shadow: rgb(0 0 0 / 20%) 0px 10px 30px -15px;
 		transition: all 200ms cubic-bezier(0.23, 1, 0.32, 1) 0s;
@@ -102,7 +103,7 @@ const RepoFooterParagraph = styled.p`
 const RepoLanguageColor = styled.div`
 	width: 10px;
 	height: 10px;
-	background: red;
+	background: #fff;
 	border-radius: 50%;
 `
 export {

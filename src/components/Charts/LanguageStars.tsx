@@ -1,7 +1,13 @@
 import { Doughnut } from 'react-chartjs-2'
-import { Chart, ChartTitle } from '../styles/ChartStyles'
+import { Chart, ChartTitle } from '../../styles/ChartStyles'
+import { UserRepos } from '../../types'
 
-const LanguageStars = ({ stat, language }) => {
+interface LanguageStarsProps {
+	stat: UserRepos
+	language: UserRepos
+}
+
+const LanguageStars = ({ stat, language }: LanguageStarsProps) => {
 	// individual language colors
 	const languageColors = language.map((item) => item.color)
 
@@ -20,8 +26,7 @@ const LanguageStars = ({ stat, language }) => {
 		// get the starred
 		const starsArr = repos.map((r) => r.starred)
 		// add the starred of each language together
-		const starSum = starsArr.reduce((a, b) => a + b, 0)
-		return starSum
+		return starsArr.reduce((a, b) => a + b, 0)
 	})
 
 	const data = {
@@ -33,6 +38,7 @@ const LanguageStars = ({ stat, language }) => {
 				backgroundColor: languageColors,
 				borderColor: languageColors,
 				borderWidth: 1,
+				hoverOffset: 4,
 			},
 		],
 	}

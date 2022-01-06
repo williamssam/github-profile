@@ -1,12 +1,18 @@
 import { Bar } from 'react-chartjs-2'
-import { Chart, ChartTitle } from '../styles/ChartStyles'
+import { Chart, ChartTitle } from '../../styles/ChartStyles'
+import { UserRepos } from '../../types'
 
-const MostStarredChart = ({ stat }) => {
+interface MostStarredChartProps {
+	stat: UserRepos
+}
+
+const MostStarredChart = ({ stat }: MostStarredChartProps) => {
 	const name = stat.map((item) => item.name)
+	const slicedName = name.map((item) => item.slice(0, 15))
 	const stars = stat.map((item) => item.starred)
 
 	const data = {
-		labels: name.slice(0, 5),
+		labels: slicedName.slice(0, 5),
 		datasets: [
 			{
 				label: 'Most Starred',
@@ -37,12 +43,8 @@ const MostStarredChart = ({ stat }) => {
 				data={data}
 				options={{
 					maintainAspectRatio: true,
-					aspectRatio: 2,
 					responsive: true,
 					aspectRatio: 1,
-					legend: {
-						display: false,
-					},
 				}}
 			/>
 		</Chart>

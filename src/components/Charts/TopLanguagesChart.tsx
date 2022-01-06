@@ -1,7 +1,12 @@
 import { Pie } from 'react-chartjs-2'
-import { Chart, ChartTitle } from '../styles/ChartStyles'
+import { Chart, ChartTitle } from '../../styles/ChartStyles'
+import { UserRepos } from '../../types'
 
-const TopLanguagesChart = ({ stat }) => {
+interface TopLanguagesChartProps {
+	stat: UserRepos
+}
+
+const TopLanguagesChart = ({ stat }: TopLanguagesChartProps) => {
 	const language = stat.map((item) => item.label)
 	const value = stat.map((item) => item.value)
 	const color = stat.map((item) => item.color)
@@ -14,9 +19,11 @@ const TopLanguagesChart = ({ stat }) => {
 				backgroundColor: color,
 				borderColor: color,
 				data: value,
+				hoverOffset: 4,
 			},
 		],
 	}
+
 	return (
 		<Chart>
 			<ChartTitle>Top Languages</ChartTitle>

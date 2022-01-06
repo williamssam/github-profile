@@ -1,4 +1,4 @@
-const langColors = {
+export const langColors: Record<string, any> = {
 	Mercury: '#ff2b2b',
 	TypeScript: '#2b7489',
 	PureBasic: '#5a6986',
@@ -198,5 +198,3 @@ const langColors = {
 	Dogescript: '#cca760',
 	nesC: '#94B0C7',
 }
-
-export default langColors

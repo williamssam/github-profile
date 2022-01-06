@@ -1,18 +1,19 @@
-import { useState } from 'react'
-import { useHistory } from 'react-router-dom'
+import { useEffect, useRef, useState } from 'react'
 import { GoMarkGithub } from 'react-icons/go'
+import { useHistory } from 'react-router-dom'
 import {
-	SearchInputField,
+	MainSection,
 	SearchForm,
 	SearchHeading,
-	MainSection,
-} from './styles/SearchStyles'
+	SearchInputField,
+} from '../styles/SearchStyles'
 
 const SearchSection = () => {
 	const [searchQuery, setSearchQuery] = useState('')
+	const ref = useRef<HTMLInputElement | null>(null)
 	const history = useHistory()
 
-	const handleSubmit = (e) => {
+	const handleSubmit = (e: React.FormEvent): void => {
 		e.preventDefault()
 
 		if (!searchQuery) {
@@ -21,6 +22,10 @@ const SearchSection = () => {
 			history.push(`/user/${searchQuery.trim()}`)
 		}
 	}
+
+	useEffect(() => {
+		ref.current?.focus()
+	}, [])
 
 	return (
 		<MainSection>
@@ -34,6 +39,7 @@ const SearchSection = () => {
 					</label>
 
 					<SearchInputField
+						ref={ref}
 						value={searchQuery}
 						onChange={(e) => setSearchQuery(e.target.value)}
 					/>
