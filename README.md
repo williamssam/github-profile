@@ -1,19 +1,18 @@
 # Github Profile - a better look at your profile
 
-My goal was to create an app to look at your github profile with graphs.
+My goal was to create a responsive webapp using React, Typescript and the Github GraphQL api to show an interesting look of your github profile with data visualizations for your data.
+
+-  Link: [Github Profile](https://gh-profiles.netlify.app/)
 
 <hr>
-Note <br>
+<b>Note</b> <br>
 -  Converted the app from react with js to typescript <br>
-- Migrate the github api version from v3 (rest api) to v4 (graphql) [coming soon]
+-  Migrate the github api version from v3 (rest api) to v4 (graphql)
 <hr>
 
 ![](screenshot.png)
 
 ## Getting Started
-
-NB: Install "yarn" if you have not, using
-<code>npm install --global yarn</code>
 
 1. Install dependencies <br>
    <code>yarn</code>

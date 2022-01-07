@@ -1,4 +1,20 @@
-export interface UserProfile {
+export interface Data {
+	name: string
+	followers: { totalCount: number }
+	following: { totalCount: number }
+	repositories: { totalCount: number }
+	avatarUrl: string
+	bio: string
+	location: string
+	createdAt: string
+	login: string
+	url: string
+	twitterUsername: string
+	company: string
+	websiteUrl: string
+}
+
+export type UserProfile = {
 	name: string
 	followers: number
 	following: number
@@ -13,13 +29,12 @@ export interface UserProfile {
 	company: string
 }
 
-export interface Option {
+export type Option = {
 	name: string
 	original_name: string
 }
 
-export interface UserRepo {
-	fork?: string
+export type UserRepo = {
 	id: number
 	description: string
 	forks: number
@@ -28,6 +43,7 @@ export interface UserRepo {
 	starred: number
 	language: string
 	name: string
+	fork?: string
 	label?: string
 	value?: string
 	color?: string
@@ -38,17 +54,14 @@ export interface Stat extends UserRepo {
 	html_url: string
 }
 
+/** Array containing user repo */
 export type UserRepos = UserRepo[]
 
-export interface TopReposProps {
-	userRepo: UserRepo[]
+export type TopReposProps = {
+	/** Array containing user repo */
+	userRepo: UserRepos
+	/** Array of option for filter repo select menu */
 	options: Option[]
+	/** Event listener for select menu */
 	handleChange: (e: React.ChangeEvent<HTMLSelectElement>) => void
 }
-
-/*
-					// style={{
-					// 											background:
-					// 												langColors[language],
-					// 										}}
-*/

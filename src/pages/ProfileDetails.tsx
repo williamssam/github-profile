@@ -1,3 +1,4 @@
+import { useQuery } from '@apollo/client'
 import GhPolyglot from 'gh-polyglot'
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
@@ -7,23 +8,32 @@ import Header from '../components/Header'
 import Loader from '../components/Loader'
 import NotFound from '../components/NotFound'
 import TopRepos from '../components/TopRepos'
-import { Stat, UserProfile, UserRepos } from '../types'
+import { USER } from '../query'
+import { Data, Stat, UserRepos } from '../types'
 import { options } from '../utilities/options'
 
-interface Username {
+type Username = {
 	username: string
 }
 
+type Login = {
+	user: string
+}
+
+type DataProps = {
+	user: Data
+}
+
 const ProfileDetails = () => {
-	const [userProfile, setUserProfile] = useState<UserProfile | null>(null)
 	const [userRepo, setUserRepo] = useState<UserRepos>([])
 	const [topLanguage, setTopLanguage] = useState<UserRepos>([])
 	const [mostStarred, setMostStarred] = useState<UserRepos>([])
 	const [languageStars, setLanguageStars] = useState<UserRepos>([])
-	const [isLoading, setIsLoading] = useState<boolean>(true)
-	const [error, setError] = useState<string | null>(null)
 	const { username }: Username = useParams()
 	const abort = new AbortController()
+	const { loading, error, data } = useQuery<DataProps, Login>(USER, {
+		variables: { user: `${username}` },
+	})
 
 	const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
 		const sortBy = e.target.value
@@ -36,28 +46,6 @@ const ProfileDetails = () => {
 				b[sortBy] - a[sortBy]
 		)
 		setUserRepo(repoList)
-	}
-
-	const fetchUserProfile = async () => {
-		try {
-			fetchUserRepo()
-			const response = await fetch(
-				`https://api.github.com/users/${username}`,
-				{ signal: abort.signal }
-			)
-
-			if (!response.ok) {
-				throw Error('could not fetch searched data')
-			}
-			const data = await response.json()
-
-			setUserProfile(data)
-			setIsLoading(false)
-		} catch (error) {
-			setIsLoading(false)
-			// used type assertion to explicitly tell the compiler that I want to use different type
-			setError((error as Error).message)
-		}
 	}
 
 	const fetchUserRepo = () => {
@@ -95,18 +83,18 @@ const ProfileDetails = () => {
 	}
 
 	useEffect(() => {
-		fetchUserProfile()
+		fetchUserRepo()
 
 		return () => abort?.abort()
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [username])
 
-	if (isLoading) return <Loader />
-	if (error) return <NotFound error={error} />
+	if (loading) return <Loader />
+	if (error) return <NotFound />
 
 	return (
 		<>
-			{userProfile && <Header {...userProfile} />}
+			{data?.user && <Header {...data?.user} />}
 
 			<main style={{ background: '#fafafa' }}>
 				{/* Charts */}

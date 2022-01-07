@@ -1,4 +1,4 @@
-import { FaTwitter } from 'react-icons/fa'
+import { FaGlobe, FaTwitter } from 'react-icons/fa'
 import {
 	GoBriefcase,
 	GoCalendar,
@@ -18,42 +18,29 @@ import {
 	UserImage,
 	UserUsername,
 } from '../styles/HeaderStyles'
+import { Data } from '../types'
 import { getDateName } from '../utilities/getDateName'
-
-interface HeaderProps {
-	name: string
-	followers: number
-	following: number
-	public_repos: number
-	avatar_url: string
-	bio: string
-	location: string
-	created_at: string
-	login: string
-	html_url: string
-	twitter_username: string
-	company: string
-}
 
 const Header = ({
 	name,
 	followers,
 	following,
-	public_repos,
-	avatar_url,
+	avatarUrl,
 	bio,
 	location,
-	created_at,
+	createdAt,
 	login,
-	html_url,
-	twitter_username,
+	url,
+	twitterUsername,
 	company,
-}: HeaderProps) => {
+	websiteUrl,
+	repositories,
+}: Data) => {
 	return (
 		<>
 			<ProfileHeader>
 				<div>
-					<UserImage src={avatar_url} alt={`${name} image`} />
+					<UserImage src={avatarUrl} alt={`${name} image`} />
 				</div>
 
 				<ProfileArticle>
@@ -66,22 +53,30 @@ const Header = ({
 						{login && (
 							<UserGithubList>
 								<GoMarkGithub />
-								<a
-									href={html_url}
-									target='_blank'
-									rel='noopener noreferrer'>
+								<a href={url} target='_blank' rel='noopener noreferrer'>
 									@{login}
 								</a>
 							</UserGithubList>
 						)}
-						{twitter_username && (
+						{twitterUsername && (
 							<UserGithubList>
 								<FaTwitter />
 								<a
-									href={`https://twitter.com/${twitter_username}`}
+									href={`https://twitter.com/${twitterUsername}`}
 									target='_blank'
 									rel='noopener noreferrer'>
-									{twitter_username}
+									{twitterUsername}
+								</a>
+							</UserGithubList>
+						)}
+						{websiteUrl && (
+							<UserGithubList>
+								<FaGlobe />
+								<a
+									href={websiteUrl}
+									target='_blank'
+									rel='noopener noreferrer'>
+									{websiteUrl}
 								</a>
 							</UserGithubList>
 						)}
@@ -97,35 +92,36 @@ const Header = ({
 								<p>{location}</p>
 							</UserGithubList>
 						)}
-						{created_at && (
+						{createdAt && (
 							<UserGithubList>
 								<GoCalendar />
-								<p>Joined {getDateName(created_at.slice(0, 20))}</p>
+								<p>Joined {getDateName(createdAt.slice(0, 20))}</p>
 							</UserGithubList>
 						)}
 					</UserGithubDetails>
 
 					<UserGithubStats>
-						{public_repos && (
+						{repositories.totalCount && (
 							<UserGithubStatsDetails>
 								<UserGithubStatH2>
-									{public_repos.toLocaleString()}
+									{repositories.totalCount.toLocaleString()}
 								</UserGithubStatH2>
 								<UserGithubStatP>Repositories</UserGithubStatP>
+								<small>public and private</small>
 							</UserGithubStatsDetails>
 						)}
-						{followers && (
+						{followers.totalCount && (
 							<UserGithubStatsDetails>
 								<UserGithubStatH2>
-									{followers.toLocaleString()}
+									{followers.totalCount.toLocaleString()}
 								</UserGithubStatH2>
 								<UserGithubStatP>Followers</UserGithubStatP>
 							</UserGithubStatsDetails>
 						)}
-						{following && (
+						{following.totalCount && (
 							<UserGithubStatsDetails>
 								<UserGithubStatH2>
-									{following.toLocaleString()}
+									{following.totalCount.toLocaleString()}
 								</UserGithubStatH2>
 								<UserGithubStatP>Following</UserGithubStatP>
 							</UserGithubStatsDetails>

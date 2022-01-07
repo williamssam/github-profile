@@ -1,7 +1,7 @@
 import { createGlobalStyle } from 'styled-components'
 
 export default createGlobalStyle`
-   html {
+   :root {
       font-size: 10px;
       scroll-behavior: smooth;
    }

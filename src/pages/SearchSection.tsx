@@ -8,6 +8,7 @@ import {
 	SearchInputField,
 } from '../styles/SearchStyles'
 
+// Homepage Component
 const SearchSection = () => {
 	const [searchQuery, setSearchQuery] = useState('')
 	const ref = useRef<HTMLInputElement | null>(null)

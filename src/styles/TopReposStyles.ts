@@ -25,7 +25,7 @@ const TopReposContainer = styled.section`
 
 	ul {
 		display: grid;
-		grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+		grid-template-columns: repeat(auto-fill, minmax(335px, 1fr));
 		gap: 2.5rem;
 		margin-top: 3rem;
 	}

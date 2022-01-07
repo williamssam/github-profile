@@ -96,6 +96,11 @@ const UserGithubStatsDetails = styled.li`
 	padding: 1rem 0;
 	border-radius: 5px;
 
+	small {
+		font-size: 1rem;
+		color: rgba(200, 225, 255, 0.4);
+	}
+
 	@media screen and (max-width: 648px) {
 		padding: 2rem;
 		&:not(:first-of-type) {

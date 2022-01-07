@@ -1,0 +1,17 @@
+interface HeaderProps {
+	name: string
+	followers: {totalCount: number}
+	following: {totalCount:number}
+	// public_repos: number
+	avatarUrl: string
+	bio: string
+	location: string
+	createdAt: string
+	login: string
+	url: string
+	twitterUsername: string
+	company: string
+	websiteUrl: string
+}
+
+{name, followers, following, avatarUrl, bio, location, createdAt, login, url, twitterUsername, company, websiteUrl }

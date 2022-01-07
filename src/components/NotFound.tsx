@@ -12,18 +12,15 @@ const NotFoundContainer = styled.div`
 	background: ${({ theme }) => theme.colors.colorOne};
 `
 
-interface ErrorProps {
-	error: string
-}
+// interface ErrorProps {
+// 	error: string
+// }
+// { error }: ErrorProps
 
-const NotFound = ({ error }: ErrorProps) => {
+const NotFound = () => {
 	return (
 		<NotFoundContainer>
-			{error ? (
-				<h2>{error}</h2>
-			) : (
-				<h2>Uh 🙄, The page you are looking for does not exist.</h2>
-			)}
+			<h2>Uh 🙄, The page you are looking for does not exist.</h2>
 			<Link to='/' style={{ textDecoration: 'underline' }}>
 				Go back home🤗
 			</Link>
